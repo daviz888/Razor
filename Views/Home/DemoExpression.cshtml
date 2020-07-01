@@ -1,0 +1,65 @@
+﻿@model Razor.Models.Product
+
+@{
+    ViewBag.Title = "DemoExpression";
+}
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Property</th>
+            <th scope="col">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>@Model.Price</td>
+        </tr>
+        <tr>
+            <td>Stock Level</td>
+            <td>
+                @switch ((int)ViewBag.ProductCount)
+                {
+                    case 0:
+                        @:Out of Stock
+                        break;
+                    case 1:
+                        <b class="text-danger">Low Stock (@ViewBag.ProductCount)</b>
+                        break;
+                    default:
+                        @ViewBag.ProductCount
+                        break;
+                }
+            </td>
+         </tr>
+
+
+        </tbody>
+
+
+       
+    </table>
+
+
+
+    <div class="container" data-discount="@ViewBag.ApplyDiscount" data-express="@ViewBag.ExpressShip"
+     data-supplier="@ViewBag.Supplier">
+    The containing element has data attributes
+</div>
+
+<div class="container">
+    <label class="checkbox-inline">
+        <input type="checkbox" id="discountCheck" checked="@ViewBag.ApplyDiscount"> Discount
+    </label>
+    <label class="checkbox-inline">
+        <input type="checkbox" id="expressCheck" checked="@ViewBag.ExpressShip"> Express
+    </label>
+    <label class="checkbox-inline">
+       <input type="checkbox" id="supplierCheck" checked="@ViewBag.Supplier"> Supplier
+    </label>
+</div>
